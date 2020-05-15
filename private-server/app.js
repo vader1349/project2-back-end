@@ -88,6 +88,19 @@ app.post('/user',(request,response)=>{
     });
 });
 
+app.delete('/card',(request,response)=>{
+    const query='DELETE FROM Card WHERE id=?';
+    const params=[request.body.id];
+    connection.query(query,params,(error,result)=>{
+        if(error){
+            console.log(`DELETE ERROR: ${error.message}`);
+        }
+        else{
+             response.send({ok:true});
+         }
+    });
+});
+
 const port=3443;
 app.listen(port,()=>{
    console.log(`Live on port ${port}`);
